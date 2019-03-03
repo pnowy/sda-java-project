@@ -1,9 +1,9 @@
 package pl.sda.programming1;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.math.BigDecimal;
+import java.util.*;
+import java.util.function.BiConsumer;
 
 public class CsvReaderUtils implements CsvReader {
 
@@ -32,7 +32,27 @@ public class CsvReaderUtils implements CsvReader {
 
     @Override
     public List<Map<String, Object>> convert(List<String[]> lines) {
-        return null;
+
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        for (String[] line : lines) {
+            // procesowanie pojedynczego elementu - start
+            Map<String, Object> element = convertSingleElement(line);
+            result.add(element);
+            // procesowanie pojedynczego elementu - stop
+        }
+
+        return result;
+    }
+
+    private Map<String, Object> convertSingleElement(String[] array) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("MARKA", array[0]);
+        map.put("MODEL", array[1]);
+        map.put("ROK", Integer.valueOf(array[2]));
+        map.put("KM", Integer.valueOf(array[3]));
+        map.put("CENA", new BigDecimal(array[4]));
+        return map;
     }
 
     @Override

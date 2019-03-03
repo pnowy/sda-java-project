@@ -2,18 +2,17 @@ package pl.sda.programming1;
 
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.Objects;
 
 public class Car {
 
     private final String brandName;
     private final String modelName;
-    private final Date productionYear;
+    private final int productionYear;
     private final int powerInKM;
     private final BigDecimal carPrice;
 
-    public Car(String brandName, String modelName, Date productionYear, int powerInKM, BigDecimal carPrice) {
+    public Car(String brandName, String modelName, int productionYear, int powerInKM, BigDecimal carPrice) {
         this.brandName = brandName;
         this.modelName = modelName;
         this.productionYear = productionYear;
@@ -29,7 +28,7 @@ public class Car {
         return modelName;
     }
 
-    public Date getProductionYear() {
+    public int getProductionYear() {
         return productionYear;
     }
 
