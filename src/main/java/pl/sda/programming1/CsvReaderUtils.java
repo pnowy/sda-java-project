@@ -14,7 +14,7 @@ public class CsvReaderUtils implements CsvReader {
 
     @Override
     public List<String[]> readLines(File file) {
-        log.info("Read lines");
+        log.info("Read lines from file: {}", file.getAbsolutePath());
         String[] carParameters;
         List<String[]> listOfString = new ArrayList<>();
         try (FileReader fileReader = new FileReader(file);
@@ -23,13 +23,14 @@ public class CsvReaderUtils implements CsvReader {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 if (i != 0) {
+                    log.debug("Reading single line: {}", line);
                     carParameters = line.split(";");
                     listOfString.add(carParameters);
                 }
                 i++;
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("File not found", e);
         }
         return listOfString;
     }
