@@ -15,9 +15,7 @@ public class Main {
         });
 
         List<Map<String, Object>> convertedList = csvReaderUtils.convert(listOfCars);
-        convertedList.forEach(record ->{
-            System.out.println(Arrays.toString(new Map[]{record}));
-        });
+        convertedList.forEach(record -> System.out.println(Arrays.toString(new Map[]{record})));
 
         List<Car> cars = csvReaderUtils.objects(convertedList);
         cars.forEach(System.out::println);
