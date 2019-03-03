@@ -6,9 +6,9 @@ import java.util.Map;
 
 public interface CsvReader {
 
-    String[] readLines(File file);
+    List<String[]> readLines(File file);
 
-    List<Map<String, Object>> convert(String[] lines);
+    List<Map<String, Object>> convert(List<String[]> lines);
 
     List<Car> objects(List<Map<String, Object>> values);
 
