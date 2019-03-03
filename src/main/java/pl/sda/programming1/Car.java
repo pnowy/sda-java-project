@@ -1,6 +1,8 @@
 package pl.sda.programming1;
 
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -59,9 +61,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "brandName='" + brandName + '\'' +
-                ", modelName='" + modelName + '\'' +
-                '}';
+        return ReflectionToStringBuilder.toString(this);
     }
 }
