@@ -1,5 +1,8 @@
 package pl.sda.programming1;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
@@ -7,10 +10,11 @@ import java.util.function.BiConsumer;
 
 public class CsvReaderUtils implements CsvReader {
 
-
+    private static final Logger log = LoggerFactory.getLogger(CsvReaderUtils.class);
 
     @Override
     public List<String[]> readLines(File file) {
+        log.info("Read lines");
         String[] carParameters;
         List<String[]> listOfString = new ArrayList<>();
         try (FileReader fileReader = new FileReader(file);
