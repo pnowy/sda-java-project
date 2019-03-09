@@ -9,6 +9,7 @@ import pl.sda.programming1.datastructures.SdaStackImpl;
 import pl.sda.programming1.datastructures.TestClass;
 
 import java.util.Optional;
+import java.util.Stack;
 
 public class StackTest {
 
@@ -38,6 +39,10 @@ public class StackTest {
         log.info("POP operation(2)={}", stack.pop());
         log.info("POP operation(3)={}", stack.pop());
         log.info("POP operation(4)={}", stack.pop());
+
+        // implementacja stack-a w jdk javy
+        Stack<String> javaStack = new Stack<>();
+        javaStack.push("example");
     }
 
     @Test
