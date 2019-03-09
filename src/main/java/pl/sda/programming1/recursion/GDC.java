@@ -4,7 +4,7 @@ public class GDC {
 
     public static void main(String[] args) {
 //        System.out.println(recursiveGdc(255, 102));
-        System.out.println(recursiveFibonacci(5));
+        System.out.println(recursiveFibonacci(40));
     }
 
     public static int recursiveFibonacci(int n) {
