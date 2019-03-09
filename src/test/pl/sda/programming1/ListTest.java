@@ -19,9 +19,30 @@ public class ListTest {
         sdaLinkedList.addFirst(10);
         Assertions.assertThat(sdaLinkedList.isEmpty()).isFalse();
         sdaLinkedList.addLast(99);
-
         Assertions.assertThat(sdaLinkedList.getFirst()).isEqualTo(10);
+        sdaLinkedList.addFirst(3);
+        Assertions.assertThat(sdaLinkedList.size()).isEqualTo(3);
+
+        log.info("List info={}", sdaLinkedList);
         log.info("First element={}", sdaLinkedList.getFirst());
         log.info("Last element={}", sdaLinkedList.getLast());
+        log.info("Element on index=1 is equal to={}", sdaLinkedList.get(1));
+        log.info("List size={}", sdaLinkedList.size());
+
+        sdaLinkedList.removeFirst();
+
+        log.info("List size={}", sdaLinkedList.size());
+
+        sdaLinkedList.removeLast();
+
+        log.info("List size={}", sdaLinkedList.size());
+        log.info("First element={}", sdaLinkedList.getFirst());
+
+        sdaLinkedList.removeLast();
+        if (!sdaLinkedList.isEmpty()) {
+            log.info("First element (2)={}", sdaLinkedList.getFirst());
+        }
+
+
     }
 }

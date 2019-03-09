@@ -1,6 +1,6 @@
 package pl.sda.programming1.datastructures;
 
-public interface SdaLinkedList<T> {
+public interface SdaLinkedList<T> extends Iterable<T> {
 
     /**
      * Czy lista jest pusta
