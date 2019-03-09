@@ -8,22 +8,38 @@ public class SdaStackImpl<T> implements SdaStack<T> {
 
     @Override
     public void push(T element) {
-
+        if (isEmpty()) {
+            top = new Node<>(element);
+        } else {
+            Node<T> node = new Node<>(element);
+            node.bottomNext = top;
+            top = node;
+        }
     }
 
     @Override
     public Optional<T> pop() {
-        return Optional.empty();
+        if (isEmpty()) {
+            return Optional.empty();
+        } else {
+            Optional<T> topValue = Optional.of(top.value);
+            top = top.bottomNext;
+            return topValue;
+        }
     }
 
     @Override
     public Optional<T> peek() {
-        return Optional.empty();
+        if (isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(top.value);
+        }
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return top == null;
     }
 
     private static class Node<T> {

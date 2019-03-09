@@ -1,6 +1,7 @@
 package pl.sda.programming1;
 
 import org.apache.commons.lang3.RandomUtils;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,8 @@ public class OptionalTest {
                 .map(String::toLowerCase)
                 .orElse("NOTHING");
         log.info("Optional result={}", s);
+
+        Assertions.assertThat(12);
     }
 
     private Optional<String> exampleText() {
