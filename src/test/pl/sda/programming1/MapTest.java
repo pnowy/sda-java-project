@@ -1,14 +1,16 @@
 package pl.sda.programming1;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.sda.programming1.datastructures.domain.Patient;
+import pl.sda.programming1.datastructures.domain.PatientRegistry;
+import pl.sda.programming1.datastructures.domain.PatientRegistryImpl;
 import pl.sda.programming1.datastructures.domain.Pesel;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+import java.util.function.Consumer;
 
 public class MapTest {
 
@@ -48,5 +50,80 @@ public class MapTest {
         Pesel pesel6 = null;
 
         log.info("Pesel5 equals Pesel5 = {}", Objects.equals(pesel6, pesel5));
+    }
+
+    @Test
+    public void mapTest() {
+        Map<Pesel, Patient> records = new HashMap<>();
+        Pesel pesel = new Pesel("85894567345");
+        Pesel pesel2 = new Pesel("85894567346");
+        records.put(pesel, new Patient(pesel, "Jan Kowalski"));
+        records.put(pesel2, new Patient(pesel, "Jan Nowak"));
+
+        records.entrySet().stream().forEach(new Consumer<Map.Entry<Pesel, Patient>>() {
+            @Override
+            public void accept(Map.Entry<Pesel, Patient> entry) {
+                log.info("Entry in map. Entry key={}, entry value={}",
+                        entry.getKey(), entry.getValue());
+            }
+        });
+
+    }
+
+
+    @Test
+    public void patientRegistryTest() {
+        PatientRegistry patientRegistry = new PatientRegistryImpl();
+
+        Patient kowalski = new Patient(new Pesel("85894567345"), "Jan Kowalski");
+        Patient nowak = new Patient(new Pesel("85894567346"), "Jan Nowak");
+
+        patientRegistry.add(kowalski);
+        patientRegistry.add(nowak);
+
+        Assertions.assertThat(patientRegistry.exist(kowalski.getPesel())).isTrue();
+
+        Assertions.assertThat(patientRegistry.size()).isEqualTo(2);
+
+        log.info("Patient registry=\n{}", patientRegistry);
+    }
+
+    @Test
+    public void mapTypes() {
+
+        Map<String, String> hashMap = new HashMap<>();
+        hashMap.put("John Smith", "value1");
+        hashMap.put("Lisa Smith", "value2");
+        hashMap.put("Sandra Doe", "value3");
+
+        log.info("HashMap={}", hashMap);
+
+        Map<String, String> linkedHashMap = new LinkedHashMap<>();
+        linkedHashMap.put("John Smith", "value1");
+        linkedHashMap.put("Lisa Smith", "value2");
+        linkedHashMap.put("Sandra Doe", "value3");
+
+        log.info("LinkedHashMap={}", linkedHashMap);
+
+        Comparator<String> stringLengthComparator = new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                Integer o1Length = o1.length();
+                return o1Length.compareTo(o2.length());
+            }
+        };
+        Map<String, String> treeMap = new TreeMap<>(stringLengthComparator);
+        treeMap.put("Sandra", "value3");
+        treeMap.put("Lisa Smith Junior", "value2");
+        treeMap.put("John Smith", "value1");
+
+        log.info("TreeMap={}", treeMap);
+
+        Map<Integer, String> intMap = new TreeMap<>();
+        intMap.put(9, "val1");
+        intMap.put(17, "val2");
+        intMap.put(2, "val2");
+
+        log.info("TreeMap with integer key={}", intMap);
     }
 }

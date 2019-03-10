@@ -41,4 +41,12 @@ public class Patient {
     public int hashCode() {
         return Objects.hash(pesel);
     }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "pesel=" + pesel.getValue() +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

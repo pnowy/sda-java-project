@@ -2,7 +2,7 @@ package pl.sda.programming1.datastructures.domain;
 
 import java.util.Objects;
 
-public class Pesel {
+public class Pesel implements Comparable<Pesel> {
 
     private final String value;
 
@@ -38,5 +38,10 @@ public class Pesel {
         return "Pesel{" +
                 "value='" + value + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Pesel o) {
+        return 0;
     }
 }

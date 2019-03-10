@@ -2,7 +2,10 @@ package pl.sda.programming1.datastructures.domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
 
 public class PatientRegistryImpl implements PatientRegistry {
 
@@ -27,16 +30,29 @@ public class PatientRegistryImpl implements PatientRegistry {
 
     @Override
     public boolean exist(Pesel pesel) {
-        return false;
+        Objects.requireNonNull(pesel, "Pesel cannot be null");
+        return this.records.containsKey(pesel);
     }
 
     @Override
     public Optional<Patient> get(Pesel pesel) {
-        return Optional.empty();
+        return Optional.ofNullable(this.records.get(pesel));
     }
 
     @Override
     public int size() {
-        return 0;
+        return this.records.size();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        this.records.entrySet().stream().forEach(new Consumer<Map.Entry<Pesel, Patient>>() {
+            @Override
+            public void accept(Map.Entry<Pesel, Patient> entry) {
+                sb.append(entry.getValue()).append("\n");
+            }
+        });
+        return sb.toString();
     }
 }
