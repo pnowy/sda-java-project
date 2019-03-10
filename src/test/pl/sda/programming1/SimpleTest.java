@@ -1,5 +1,7 @@
 package pl.sda.programming1;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -26,5 +28,15 @@ public class SimpleTest {
         assert car.getPowerInKM() == 300;
         Assertions.assertThat(result).hasSize(1);
         Assertions.assertThat(car.getModelName()).isEqualToIgnoringCase("gulietta");
+    }
+
+    @Test
+    public void multimapExample() {
+        Multimap<String, String> multimap = HashMultimap.create();
+
+        multimap.put("X", "1");
+        multimap.put("X", "2");
+
+        System.out.println(multimap);
     }
 }
