@@ -30,7 +30,10 @@ public class TreeTest {
 
     @Test
     public void treeTest() {
-        List<String> order = treeTraverser.traversePreOrder(exampleTree);
-        log.info("Tree pre order = {}", order);
+        List<String> preOrder = treeTraverser.traversePreOrder(exampleTree);
+        log.info("Tree pre order = {}", preOrder);
+
+        List<String> levelOrder = treeTraverser.traverseLevelOrder(exampleTree);
+        log.info("Level order = {}", levelOrder);
     }
 }

@@ -1,7 +1,6 @@
 package pl.sda.programming1.datastructures;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class TreeTraverserImpl implements TreeTraverser {
@@ -23,11 +22,6 @@ public class TreeTraverserImpl implements TreeTraverser {
         return visited;
     }
 
-    @Override
-    public <T> List<T> traverseLevelOrder(SdaTree<T> tree) {
-        return null;
-    }
-
     private <T> void preOrder(SdaTree<T> tree, Consumer<T> consumer) {
         consumer.accept(tree.getValue());
         tree.getLeftChild()
@@ -35,4 +29,22 @@ public class TreeTraverserImpl implements TreeTraverser {
         tree.getRightChild()
                 .ifPresent(rightTree -> preOrder(rightTree, consumer));
     }
+
+    @Override
+    public <T> List<T> traverseLevelOrder(SdaTree<T> tree) {
+        List<T> visited = new ArrayList<>();
+        levelOrder(tree, visited::add);
+        return visited;
+    }
+
+    private <T> void levelOrder(SdaTree<T> tree, Consumer<T> visitor) {
+        Deque<SdaTree<T>> toVisit = new ArrayDeque<>(Collections.singletonList(tree));
+        while (!toVisit.isEmpty()) {
+            SdaTree<T> node = toVisit.poll();
+            visitor.accept(node.getValue());
+            node.getLeftChild().ifPresent(toVisit::offer);
+            node.getRightChild().ifPresent(toVisit::offer);
+        }
+    }
+
 }

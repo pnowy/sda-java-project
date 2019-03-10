@@ -8,4 +8,6 @@ public interface TreeTraverser {
 
     <T> List<T> traverseLevelOrder(SdaTree<T> tree);
 
+    int countLeaves(SdaTree<?> tree);
+
 }
