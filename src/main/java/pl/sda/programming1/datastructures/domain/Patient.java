@@ -16,6 +16,15 @@ public class Patient {
         return pesel;
     }
 
+    public String countSomething() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "CountingResult";
+    }
+
     public String getName() {
         return name;
     }
