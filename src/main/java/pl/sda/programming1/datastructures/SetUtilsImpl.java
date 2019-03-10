@@ -19,4 +19,11 @@ public class SetUtilsImpl implements SetUtils {
         return duplicates;
     }
 
+    @Override
+    public <T> Set<T> findCommonValues(List<T> list1, List<T> list2) {
+        Set<T> intersection = new HashSet<>(list1);
+        intersection.retainAll(list2);
+        return intersection;
+    }
+
 }
