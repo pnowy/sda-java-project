@@ -23,6 +23,10 @@ public class ListTest {
         sdaLinkedList.addFirst(3);
         Assertions.assertThat(sdaLinkedList.size()).isEqualTo(3);
 
+        for (Integer element : sdaLinkedList) {
+            log.info("Element in for-loop={}", element);
+        }
+
         log.info("List info={}", sdaLinkedList);
         log.info("First element={}", sdaLinkedList.getFirst());
         log.info("Last element={}", sdaLinkedList.getLast());
@@ -42,7 +46,6 @@ public class ListTest {
         if (!sdaLinkedList.isEmpty()) {
             log.info("First element (2)={}", sdaLinkedList.getFirst());
         }
-
 
     }
 }

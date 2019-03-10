@@ -112,14 +112,22 @@ public class SdaLinkedListImpl<T> implements SdaLinkedList<T> {
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
+
+            private Node<T> node = head;
+
             @Override
             public boolean hasNext() {
-                return false;
+                return node != null;
             }
 
             @Override
             public T next() {
-                return null;
+                if (node == null) {
+                    throw new NoSuchElementException("There is no element in the list!");
+                }
+                T element = node.element;
+                node = node.next;
+                return element;
             }
         };
     }

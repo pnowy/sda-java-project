@@ -1,5 +1,7 @@
 package pl.sda.programming1.datastructures;
 
+import java.util.Iterator;
+
 public interface SdaLinkedList<T> extends Iterable<T> {
 
     /**
@@ -25,4 +27,6 @@ public interface SdaLinkedList<T> extends Iterable<T> {
     void removeFirst();
 
     void removeLast();
+
+    Iterator<T> iterator();
 }

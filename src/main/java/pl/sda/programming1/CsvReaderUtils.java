@@ -31,6 +31,8 @@ public class CsvReaderUtils implements CsvReader {
             }
         } catch (IOException e) {
             log.error("File not found", e);
+        } finally {
+
         }
         return listOfString;
     }
