@@ -6,6 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.sda.programming1.datastructures.SdaLinkedList;
 import pl.sda.programming1.datastructures.SdaLinkedListImpl;
+import pl.sda.programming1.datastructures.domain.Pesel;
+
+import java.util.ArrayList;
 
 public class ListTest {
 
@@ -48,4 +51,16 @@ public class ListTest {
         }
 
     }
+
+    @Test
+    public void genericListTest() {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("String");
+        String s = list.get(0);
+
+        SdaLinkedList<Integer> sdaLinkedList = new SdaLinkedListImpl<>(2, 4, 7);
+        log.info("My list={}", sdaLinkedList);
+    }
+
+
 }

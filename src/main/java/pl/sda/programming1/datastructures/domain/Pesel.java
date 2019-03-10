@@ -1,10 +1,16 @@
 package pl.sda.programming1.datastructures.domain;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Pesel implements Comparable<Pesel> {
 
     private final String value;
+//
+//    public Pesel(String value, Comparator<Pesel> comparator) {
+//        this(value);
+//        this.comparator = comparator;
+//    }
 
     public Pesel(String value) {
         if (value == null) {

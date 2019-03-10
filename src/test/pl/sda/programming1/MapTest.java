@@ -4,10 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.sda.programming1.datastructures.domain.Patient;
-import pl.sda.programming1.datastructures.domain.PatientRegistry;
-import pl.sda.programming1.datastructures.domain.PatientRegistryImpl;
-import pl.sda.programming1.datastructures.domain.Pesel;
+import pl.sda.programming1.datastructures.domain.*;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -105,14 +102,8 @@ public class MapTest {
 
         log.info("LinkedHashMap={}", linkedHashMap);
 
-        Comparator<String> stringLengthComparator = new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                Integer o1Length = o1.length();
-                return o1Length.compareTo(o2.length());
-            }
-        };
-        Map<String, String> treeMap = new TreeMap<>(stringLengthComparator);
+//        Comparator<String> stringLengthComparator = new StringLengthComparator();
+        Map<String, String> treeMap = new TreeMap<>(new StringLengthComparator());
         treeMap.put("Sandra", "value3");
         treeMap.put("Lisa Smith Junior", "value2");
         treeMap.put("John Smith", "value1");

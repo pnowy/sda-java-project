@@ -1,11 +1,20 @@
 package pl.sda.programming1.datastructures;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class SdaLinkedListImpl<T> implements SdaLinkedList<T> {
 
     private Node<T> head;
+
+    public SdaLinkedListImpl() {}
+
+    public SdaLinkedListImpl(T ... elements) {
+        Arrays.asList(elements).forEach(element -> {
+            addFirst(element);
+        });
+    }
 
     @Override
     public boolean isEmpty() {
@@ -130,6 +139,15 @@ public class SdaLinkedListImpl<T> implements SdaLinkedList<T> {
                 return element;
             }
         };
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[ ");
+        for (T element : this) {
+            sb.append(element).append(" | ");
+        }
+        return sb.append(" ]").toString();
     }
 
     private static class Node<T> {
