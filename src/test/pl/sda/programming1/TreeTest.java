@@ -35,5 +35,7 @@ public class TreeTest {
 
         List<String> levelOrder = treeTraverser.traverseLevelOrder(exampleTree);
         log.info("Level order = {}", levelOrder);
+
+        log.info("Count leaves = {}", treeTraverser.countLeaves(exampleTree));
     }
 }

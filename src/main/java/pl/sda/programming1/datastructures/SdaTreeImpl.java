@@ -30,4 +30,9 @@ public class SdaTreeImpl<T> implements SdaTree<T> {
         return Optional.ofNullable(right);
     }
 
+    @Override
+    public boolean isLeaf() {
+        return !getRightChild().isPresent() && !getLeftChild().isPresent();
+    }
+
 }

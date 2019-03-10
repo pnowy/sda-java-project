@@ -31,4 +31,6 @@ public interface SdaTree<T> {
      * Zwraca prawe poddrzewo
      */
     Optional<SdaTree<T>> getRightChild();
+
+    boolean isLeaf();
 }

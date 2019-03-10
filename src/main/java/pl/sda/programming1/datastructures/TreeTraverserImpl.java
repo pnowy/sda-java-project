@@ -37,6 +37,19 @@ public class TreeTraverserImpl implements TreeTraverser {
         return visited;
     }
 
+    @Override
+    public int countLeaves(SdaTree<?> tree) {
+        if (tree.isLeaf()) {
+            return 1;
+        }
+        return tree.getLeftChild().map(this::countLeaves).orElse(0)
+                + tree.getRightChild().map(this::countLeaves).orElse(0);
+    }
+
+//    private boolean isLeaf(SdaTree<?> tree) {
+//        return !tree.getRightChild().isPresent() && !tree.getLeftChild().isPresent();
+//    }
+
     private <T> void levelOrder(SdaTree<T> tree, Consumer<T> visitor) {
         Deque<SdaTree<T>> toVisit = new ArrayDeque<>(Collections.singletonList(tree));
         while (!toVisit.isEmpty()) {
