@@ -3,11 +3,11 @@ package pl.sda.programming1;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.sda.programming1.datastructures.SetUtils;
+import pl.sda.programming1.datastructures.SetUtilsImpl;
 import pl.sda.programming1.datastructures.domain.Pesel;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class SetTest {
 
@@ -29,5 +29,12 @@ public class SetTest {
         pesels.add(new Pesel("88776654321"));
 
         log.info("Size: {}, Pesels={}", pesels.size(), pesels);
+    }
+
+    @Test
+    public void duplicates() {
+        SetUtils setUtils = new SetUtilsImpl();
+        List<String> list = Arrays.asList("A", "B", "C", "B", "F", "C");
+        log.info("Duplicates in list={}", setUtils.findDuplicates(list));
     }
 }
