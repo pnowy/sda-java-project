@@ -2,6 +2,7 @@ package pl.sda.programming1;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.OptionalInt;
 import java.util.function.ToIntFunction;
 
@@ -39,5 +40,12 @@ public class StreamsImpl implements Streams {
 
 //        return ints.stream()
 //                .max((a, b) -> a.compareTo(b));
+    }
+
+    @Override
+    public OptionalDouble getAverage(List<Integer> integers) {
+        return integers.stream()
+                .mapToInt(value -> value.intValue())
+                .average();
     }
 }

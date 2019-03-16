@@ -2,6 +2,7 @@ package pl.sda.programming1;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.OptionalInt;
 
 public interface Streams {
@@ -14,4 +15,6 @@ public interface Streams {
     OptionalInt getMax(int[] ints);
 
     OptionalInt getMax(List<Integer> ints);
+
+    OptionalDouble getAverage(List<Integer> integers);
 }
