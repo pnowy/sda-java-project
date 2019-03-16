@@ -2,6 +2,7 @@ package pl.sda.programming1;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -99,12 +100,18 @@ public class StreamTest {
                 "Nowak", "Moniuszko", "Słowacki", "Kowalski", "Adamski", "adAmSki")));
     }
 
-    private Book effectiveJava = new Book("Effective Java", "Joshua Bloch", 3);
-    private Book cleanCode = new Book("Clean code", "Robert C. Martin", 1);
+    private Book effectiveJava = new Book("Effective     Java", "Joshua Bloch", 3);
+    private Book cleanCode = new Book("Clean - code", "Robert C. Martin", 1);
+    private Book cleanCode2 = new Book("Clean code 2", "Robert C. Martin", 2);
     private Book javaConcurrency = new Book("Java Concurrency", "Brian Goetz", 1);
 
     @Test
     public void findAuthorByTitleTest() {
+//        Map<String, Book> books = new HashMap<>();
+//        books.put(effectiveJava.getTitle(), effectiveJava);
+//        books.put(cleanCode.getTitle(), cleanCode);
+//        books.put(javaConcurrency.getTitle(), javaConcurrency);
+        // equivalent of above code
         Map<String, Book> books = ImmutableMap.<String, Book>builder()
                 .put(effectiveJava.getTitle(), effectiveJava)
                 .put(cleanCode.getTitle(), cleanCode)
@@ -116,5 +123,17 @@ public class StreamTest {
 
         assertThat(bookRepository.findByTitle("Clean code")).isPresent();
         assertThat(bookRepository.findByTitle("Cooking on the beach")).isNotPresent();
+    }
+
+    @Test
+    public void authorsOfBooksTest() {
+//        List<String> authors = streams.authorsOf(cleanCode2, javaConcurrency, effectiveJava, cleanCode);
+//        log.info("Authors={}", authors);
+        log.info("Title words={}", streams.keywordIn(javaConcurrency, cleanCode, effectiveJava));
+    }
+
+    @Test
+    public void regularTest() {
+        System.out.println(Arrays.toString("ala ma    kota".split("\\s+")));
     }
 }

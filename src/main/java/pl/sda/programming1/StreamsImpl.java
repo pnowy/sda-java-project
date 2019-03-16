@@ -96,4 +96,24 @@ public class StreamsImpl implements Streams {
     public Optional<String> findAuthorByTitle(BookRepository repository, String title) {
         return repository.findByTitle(title).map(Book::getAuthor);
     }
+
+    @Override
+    public List<String> authorsOf(Book... books) {
+        return Arrays.stream(books)
+                .map(Book::getAuthor)
+                .sorted()
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Set<String> keywordIn(Book... books) {
+        return Arrays.stream(books)
+                .map(Book::getTitle)
+                .flatMap(title -> Arrays.stream(title.split("\\s+")))
+                .peek(System.out::println)
+                .map(word -> word.replaceAll("\\W", ""))
+                .filter(word -> !word.isEmpty())
+                .collect(Collectors.toSet());
+    }
 }
