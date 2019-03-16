@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import pl.sda.programming1.datastructures.domain.PatientType;
 import pl.sda.programming1.datastructures.domain.Student;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.OptionalDouble;
@@ -71,5 +72,12 @@ public class StreamTest {
                 new Student("Witek", 3, 6)
         );
         log.info("students avg = {}", studentsAverage);
+    }
+
+    @Test
+    public void concatTest() {
+        ArrayList<Integer> integers = Lists.newArrayList(1, 2, 10);
+        log.info("concat {} gives {}", integers, streams.concat(integers));
+        log.info("concat conditional {} gives {}", integers, streams.concatConditional(integers));
     }
 }

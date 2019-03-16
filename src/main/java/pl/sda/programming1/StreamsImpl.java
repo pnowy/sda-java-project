@@ -5,6 +5,7 @@ import pl.sda.programming1.datastructures.domain.Student;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.ToIntFunction;
+import java.util.stream.Collectors;
 
 public class StreamsImpl implements Streams {
     @Override
@@ -56,5 +57,21 @@ public class StreamsImpl implements Streams {
 //                .peek(System.out::println)
                 .mapToDouble(Integer::doubleValue)
                 .average();
+    }
+
+    @Override
+    public String concat(List<Integer> integers) {
+        return integers.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(" | ", "{", "}"));
+    }
+
+    @Override
+    public String concatConditional(List<Integer> integers) {
+        return integers.stream()
+                .map(x -> {
+                    return x % 2 == 0 ? "e" + x : "o" + x;
+                })
+                .collect(Collectors.joining(" , ", "[", "]"));
     }
 }

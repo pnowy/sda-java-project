@@ -21,4 +21,16 @@ public interface Streams {
     OptionalDouble getAverage(List<Integer> integers);
 
     OptionalDouble getStudentsAverage(Student ... students);
+
+    /**
+     * [1, 2, 10] -> "[1,2,10]"
+     */
+    String concat(List<Integer> integers);
+
+    /**
+     * Jeżeli liczba jest parzysta poprzedź ją 'e' jeżeli nieparzysta poprzed ją 'o'
+     *
+     * [1, 2, 10] -> "[o1, e2, e10]"
+     */
+    String concatConditional(List<Integer> integers);
 }
