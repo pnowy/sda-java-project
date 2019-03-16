@@ -33,4 +33,11 @@ public interface Streams {
      * [1, 2, 10] -> "[o1, e2, e10]"
      */
     String concatConditional(List<Integer> integers);
+
+    int sumGreaterThan10(List<Integer> integers);
+
+    /**
+     * Metoda powinna zwrócić unikalną listę imion (wielkimi literami) z ograniczeniem do maksymalnie 3.
+     */
+    List<String> distinctUpperCase(List<String> names);
 }

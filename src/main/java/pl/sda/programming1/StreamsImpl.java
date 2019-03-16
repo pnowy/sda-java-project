@@ -74,4 +74,19 @@ public class StreamsImpl implements Streams {
                 })
                 .collect(Collectors.joining(" , ", "[", "]"));
     }
+
+    @Override
+    public int sumGreaterThan10(List<Integer> integers) {
+        return 0;
+    }
+
+    @Override
+    public List<String> distinctUpperCase(List<String> names) {
+        return names.stream()
+                .map(String::toUpperCase)
+                .distinct()
+                .sorted()
+                .limit(3)
+                .collect(Collectors.toList());
+    }
 }

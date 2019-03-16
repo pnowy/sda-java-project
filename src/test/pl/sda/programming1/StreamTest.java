@@ -8,13 +8,12 @@ import org.slf4j.LoggerFactory;
 import pl.sda.programming1.datastructures.domain.PatientType;
 import pl.sda.programming1.datastructures.domain.Student;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.OptionalDouble;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.in;
@@ -63,6 +62,16 @@ public class StreamTest {
                 })
                 .filter(integer -> integer > 1)
                 .forEach(printlnConsumerContract);
+
+//        ArrayList<String> myList = Lists.newArrayList("1", "2", "3");
+//        Stream<String> myStream = myList.stream();
+//        Stream<String> stream = myList.stream();
+//        stream.forEach(System.out::println);
+//        List<String> myNewList = stream.collect(Collectors.toList());
+
+
+//        myStream.forEach(System.out::println);
+
     }
 
     @Test
@@ -79,5 +88,11 @@ public class StreamTest {
         ArrayList<Integer> integers = Lists.newArrayList(1, 2, 10);
         log.info("concat {} gives {}", integers, streams.concat(integers));
         log.info("concat conditional {} gives {}", integers, streams.concatConditional(integers));
+    }
+
+    @Test
+    public void distinctNamesTest() {
+        log.info("distinct names = {}", streams.distinctUpperCase(Lists.newArrayList("Kowalski",
+                "Nowak", "Moniuszko", "Słowacki", "Kowalski", "Adamski", "adAmSki")));
     }
 }
