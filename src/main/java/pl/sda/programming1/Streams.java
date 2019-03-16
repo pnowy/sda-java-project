@@ -1,5 +1,7 @@
 package pl.sda.programming1;
 
+import pl.sda.programming1.datastructures.domain.Student;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
@@ -17,4 +19,6 @@ public interface Streams {
     OptionalInt getMax(List<Integer> ints);
 
     OptionalDouble getAverage(List<Integer> integers);
+
+    OptionalDouble getStudentsAverage(Student ... students);
 }

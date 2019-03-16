@@ -3,8 +3,14 @@ package pl.sda.programming1;
 import com.google.common.collect.Lists;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.sda.programming1.datastructures.domain.PatientType;
+import pl.sda.programming1.datastructures.domain.Student;
 
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -14,6 +20,8 @@ import static org.assertj.core.api.Assertions.in;
 import static pl.sda.programming1.datastructures.domain.PatientType.*;
 
 public class StreamTest {
+
+    private static final Logger log = LoggerFactory.getLogger(StreamTest.class);
 
     private Streams streams = new StreamsImpl();
 
@@ -37,7 +45,7 @@ public class StreamTest {
 
     @Test
     public void avgTest() {
-
+        assertThat(streams.getAverage(Arrays.asList(3, 6, 9))).hasValue(6.0);
     }
 
     @Test
@@ -54,5 +62,14 @@ public class StreamTest {
                 })
                 .filter(integer -> integer > 1)
                 .forEach(printlnConsumerContract);
+    }
+
+    @Test
+    public void studentTest() {
+        OptionalDouble studentsAverage = streams.getStudentsAverage(
+                new Student("Maciej", 4, 5),
+                new Student("Witek", 3, 6)
+        );
+        log.info("students avg = {}", studentsAverage);
     }
 }

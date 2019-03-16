@@ -1,9 +1,9 @@
 package pl.sda.programming1;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
+import pl.sda.programming1.datastructures.domain.Student;
+
+import java.util.*;
+import java.util.function.Function;
 import java.util.function.ToIntFunction;
 
 public class StreamsImpl implements Streams {
@@ -45,7 +45,16 @@ public class StreamsImpl implements Streams {
     @Override
     public OptionalDouble getAverage(List<Integer> integers) {
         return integers.stream()
-                .mapToInt(value -> value.intValue())
+                .mapToInt(Integer::intValue)
+                .average();
+    }
+
+    @Override
+    public OptionalDouble getStudentsAverage(Student... students) {
+        return Arrays.stream(students)
+                .flatMap(s -> s.getGrades().stream())
+//                .peek(System.out::println)
+                .mapToDouble(Integer::doubleValue)
                 .average();
     }
 }
