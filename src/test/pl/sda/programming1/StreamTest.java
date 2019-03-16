@@ -1,5 +1,6 @@
 package pl.sda.programming1;
 
+import com.google.common.collect.Lists;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import pl.sda.programming1.datastructures.domain.PatientType;
@@ -25,5 +26,8 @@ public class StreamTest {
         PatientType patientType = GOLD;
         patientType.doSomething();
         assertThat(patientType).isNotEqualTo(DEAD);
+
+        assertThat(streams.getMax(Lists.newArrayList(34, 5, 111))).hasValue(111);
+
     }
 }
