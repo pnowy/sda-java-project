@@ -1,5 +1,7 @@
 package pl.sda.programming1;
 
+import pl.sda.programming1.datastructures.domain.Book;
+import pl.sda.programming1.datastructures.domain.BookRepository;
 import pl.sda.programming1.datastructures.domain.Student;
 
 import java.util.*;
@@ -88,5 +90,10 @@ public class StreamsImpl implements Streams {
                 .sorted()
                 .limit(3)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<String> findAuthorByTitle(BookRepository repository, String title) {
+        return repository.findByTitle(title).map(Book::getAuthor);
     }
 }

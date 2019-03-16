@@ -1,5 +1,6 @@
 package pl.sda.programming1;
 
+import pl.sda.programming1.datastructures.domain.BookRepository;
 import pl.sda.programming1.datastructures.domain.Student;
 
 import java.util.List;
@@ -40,4 +41,9 @@ public interface Streams {
      * Metoda powinna zwrócić unikalną listę imion (wielkimi literami) z ograniczeniem do maksymalnie 3.
      */
     List<String> distinctUpperCase(List<String> names);
+
+    /**
+     * Wyszukuje autora książki po podanym tytule.
+     */
+    Optional<String> findAuthorByTitle(BookRepository repository, String title);
 }

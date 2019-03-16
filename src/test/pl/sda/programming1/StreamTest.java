@@ -1,10 +1,13 @@
 package pl.sda.programming1;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.sda.programming1.datastructures.domain.Book;
+import pl.sda.programming1.datastructures.domain.BookRepository;
 import pl.sda.programming1.datastructures.domain.PatientType;
 import pl.sda.programming1.datastructures.domain.Student;
 
@@ -94,5 +97,24 @@ public class StreamTest {
     public void distinctNamesTest() {
         log.info("distinct names = {}", streams.distinctUpperCase(Lists.newArrayList("Kowalski",
                 "Nowak", "Moniuszko", "Słowacki", "Kowalski", "Adamski", "adAmSki")));
+    }
+
+    private Book effectiveJava = new Book("Effective Java", "Joshua Bloch", 3);
+    private Book cleanCode = new Book("Clean code", "Robert C. Martin", 1);
+    private Book javaConcurrency = new Book("Java Concurrency", "Brian Goetz", 1);
+
+    @Test
+    public void findAuthorByTitleTest() {
+        Map<String, Book> books = ImmutableMap.<String, Book>builder()
+                .put(effectiveJava.getTitle(), effectiveJava)
+                .put(cleanCode.getTitle(), cleanCode)
+                .put(javaConcurrency.getTitle(), javaConcurrency)
+                .build();
+
+        BookRepository bookRepository =
+                title -> Optional.ofNullable(books.get(title));
+
+        assertThat(bookRepository.findByTitle("Clean code")).isPresent();
+        assertThat(bookRepository.findByTitle("Cooking on the beach")).isNotPresent();
     }
 }
