@@ -100,10 +100,16 @@ public class StreamTest {
                 "Nowak", "Moniuszko", "Słowacki", "Kowalski", "Adamski", "adAmSki")));
     }
 
-    private Book effectiveJava = new Book("Effective     Java", "Joshua Bloch", 3);
+    private Book effectiveJava = new Book("Effective Java", "Joshua Bloch", 3);
     private Book cleanCode = new Book("Clean - code", "Robert C. Martin", 1);
     private Book cleanCode2 = new Book("Clean code 2", "Robert C. Martin", 2);
     private Book javaConcurrency = new Book("Java Concurrency", "Brian Goetz", 1);
+
+    @Test
+    public void reduceBookTest() {
+        Optional<Book> mostEditions = streams.findMostEditions(effectiveJava, cleanCode, javaConcurrency);
+        log.info("book with most editions={}", mostEditions);
+    }
 
     @Test
     public void findAuthorByTitleTest() {
@@ -135,5 +141,12 @@ public class StreamTest {
     @Test
     public void regularTest() {
         System.out.println(Arrays.toString("ala ma    kota".split("\\s+")));
+    }
+
+    @Test
+    public void byTitleTest() {
+        Map<String, Book> booksByTitle =
+                streams.byTitle(javaConcurrency, cleanCode, effectiveJava);
+        log.info("Books by title={}", booksByTitle);
     }
 }

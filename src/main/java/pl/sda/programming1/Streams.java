@@ -57,4 +57,8 @@ public interface Streams {
      * Zwrócone wyrazy są podane małymi literami.
      */
     Set<String> keywordIn(Book ... books);
+
+    Map<String, Book> byTitle(Book ... books);
+
+    Optional<Book> findMostEditions(Book... books);
 }

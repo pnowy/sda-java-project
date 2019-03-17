@@ -9,6 +9,9 @@ import java.util.function.Function;
 import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.toMap;
+
 public class StreamsImpl implements Streams {
     @Override
     public OptionalInt indexOf(String string, char c) {
@@ -115,5 +118,26 @@ public class StreamsImpl implements Streams {
                 .map(word -> word.replaceAll("\\W", ""))
                 .filter(word -> !word.isEmpty())
                 .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Map<String, Book> byTitle(Book... books) {
+        return Arrays.stream(books)
+                .collect(Collectors.toMap(book -> book.getTitle(), book -> book));
+    }
+
+    @Override
+    public Optional<Book> findMostEditions(Book... books) {
+        return Arrays.stream(books)
+                .reduce((book1, book2) -> {
+                    return book2.getNumEditions() > book1.getNumEditions()
+                            ? book2
+                            : book1;
+//                    if (book2.getNumEditions() > book1.getNumEditions()) {
+//                        return book2;
+//                    } else {
+//                        return book1;
+//                    }
+                });
     }
 }

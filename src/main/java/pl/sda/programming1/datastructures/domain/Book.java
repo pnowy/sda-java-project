@@ -22,4 +22,13 @@ public class Book {
     public int getNumEditions() {
         return numEditions;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", numEditions=" + numEditions +
+                '}';
+    }
 }
