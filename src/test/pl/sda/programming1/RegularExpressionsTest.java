@@ -2,14 +2,17 @@ package pl.sda.programming1;
 
 import org.apache.commons.io.FilenameUtils;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegularExpressionsTest {
-
+    private static final Logger log = LoggerFactory.getLogger(RegularExpressionsTest.class);
     @Test
     public void simpleMatchingFromString() {
 
@@ -91,4 +94,25 @@ public class RegularExpressionsTest {
         System.out.println(pattern.matcher("xkom").matches());
         System.out.println(pattern.matcher("bkom").matches());
     }
+
+    @Test
+    public void simpleGroupTest() {
+        Pattern pattern = Pattern.compile("(k.?t)");
+        Matcher matcher = pattern.matcher("Ala ma kota, kot ma ale");
+        while (matcher.find()) {
+            log.info("group={}, start={}, end={}", matcher.group(), matcher.start(), matcher.end());
+        }
+    }
+
+    @Test
+    public void testNipWithGroups() {
+        Pattern pattern = Pattern.compile("(\\d{3}-?\\d{3}-?\\d{2}-?\\d{2})");
+        Matcher matcher = pattern.matcher("Klient posiada NIP 863-234-34-34 dla podanego towaru, inny nip: 7453434534");
+        while (matcher.find()) {
+            log.info("group={}, start={}, end={}", matcher.group(), matcher.start(), matcher.end());
+        }
+    }
+
+
+
 }
