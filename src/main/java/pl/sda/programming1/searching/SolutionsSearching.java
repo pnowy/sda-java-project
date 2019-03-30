@@ -25,6 +25,22 @@ public class SolutionsSearching implements TaskSearching {
 
     @Override
     public int binarySearch(int[] array, int value) {
-        return 0;
+        if (array.length == 0) {
+            return -1;
+        }
+        int low = 0;
+        int high = array.length - 1;
+        while (low <= high) {
+//            int mid = (low + high) / 2;
+            int mid = (low + high) >>> 1;
+            if (array[mid] > value) {
+                high = mid - 1;
+            } else if (array[mid] < value) {
+                low = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
     }
 }
