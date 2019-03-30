@@ -6,6 +6,7 @@ public class ValidatorImpl implements Validator {
     private static final Pattern PESEL_PATTERN = Pattern.compile("^\\d{11}$");
     private static final Pattern NIP_PATTERN = Pattern.compile("^\\d{3}-?\\d{3}-?\\d{2}-?\\d{2}$");
     private static final Pattern PHONE_PATTERN = Pattern.compile("^[0-9]+-?[0-9]+-?[0-9]+-?[0-9]+$");
+    private static final Pattern POSTAL_CODE_PATTERN = Pattern.compile("^\\d{2}-\\d{3}$");
 
     @Override
     public boolean isPeselValid(String pesel) {
@@ -24,6 +25,6 @@ public class ValidatorImpl implements Validator {
 
     @Override
     public boolean isPostalCodeValid(String postalCode) {
-        return false;
+        return POSTAL_CODE_PATTERN.matcher(postalCode).matches();
     }
 }

@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import pl.sda.programming1.regularexpressions.Validator;
 import pl.sda.programming1.regularexpressions.ValidatorImpl;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -130,5 +131,15 @@ public class RegularExpressionsTest {
         assertThat(validator.isPhoneValid("22-45556-445")).isTrue();
         assertThat(validator.isPhoneValid("22-45-556-445-")).isFalse();
         assertThat(validator.isPhoneValid("(22)45556445")).isFalse();
+    }
+
+    @Test
+    public void postalCodeValidatorTest() {
+        assertThat(validator.isPostalCodeValid("01-234")).isTrue();
+        assertThat(validator.isPostalCodeValid("01234")).isFalse();
+        assertThat(validator.isPostalCodeValid("1234")).isFalse();
+
+
+        System.out.println(Arrays.toString("ala      ma   kota".split("\\s+")));
     }
 }
