@@ -1,18 +1,22 @@
 package pl.sda.programming1;
 
-import org.apache.commons.io.FilenameUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.sda.programming1.regularexpressions.Validator;
+import pl.sda.programming1.regularexpressions.ValidatorImpl;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class RegularExpressionsTest {
+
     private static final Logger log = LoggerFactory.getLogger(RegularExpressionsTest.class);
+
+    private Validator validator = new ValidatorImpl();
+
     @Test
     public void simpleMatchingFromString() {
 
@@ -113,6 +117,18 @@ public class RegularExpressionsTest {
         }
     }
 
+    @Test
+    public void testPeselValidator() {
+        assertThat(validator.isPeselValid("83051258394")).isTrue();
+        assertThat(validator.isPeselValid("8305125839434")).isFalse();
+        assertThat(validator.isPeselValid("8305125839")).isFalse();
+        assertThat(validator.isPeselValid("830w1258397")).isFalse();
+    }
 
-
+    @Test
+    public void phoneValidatorTest() {
+        assertThat(validator.isPhoneValid("22-45556-445")).isTrue();
+        assertThat(validator.isPhoneValid("22-45-556-445-")).isFalse();
+        assertThat(validator.isPhoneValid("(22)45556445")).isFalse();
+    }
 }
