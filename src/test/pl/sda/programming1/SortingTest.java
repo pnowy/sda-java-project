@@ -31,4 +31,11 @@ public class SortingTest {
         sorting.insertionSort(array);
         log.info("sort array = {}", array);
     }
+
+    @Test
+    public void quicksort() {
+        int[] array = {42, 7, 5, 16};
+        sorting.quickSort(array);
+        log.info("sort array = {}", array);
+    }
 }

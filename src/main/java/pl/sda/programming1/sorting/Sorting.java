@@ -16,4 +16,14 @@ public interface Sorting {
      * Insertion sort (sortowanie przez wstawianie)
      */
     void insertionSort(int[] array);
+
+    /**
+     *  Quick sort (sortowanie szybkie - poprzez wybór pivot-a)
+     */
+    void quickSort(int[] array);
+
+    /**
+     * Merge sort (sortowanie przez scalanie
+     */
+    void mergeSort(int[] array);
 }

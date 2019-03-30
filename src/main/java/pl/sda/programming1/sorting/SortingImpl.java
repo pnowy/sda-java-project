@@ -6,7 +6,7 @@ public class SortingImpl implements Sorting {
     public void bubbleSort(int[] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length - 1; j++) {
-                if (array[j] > array[j+1]){
+                if (array[j] > array[j + 1]) {
                     swap(j, j + 1, array);
                 }
             }
@@ -45,8 +45,37 @@ public class SortingImpl implements Sorting {
         }
     }
 
+    @Override
+    public void quickSort(int[] array) {
+        quickSort(array, 0, array.length);
+    }
+
+    private void quickSort(int[] array, int lo, int hi) {
+        if (hi - lo < 1) {
+            return;
+        }
+        int pivotIndex = lo;
+        int storeIndex = pivotIndex + 1;
+        for (int i = pivotIndex + 1; i < hi; i++) {
+            int pivotValue = array[pivotIndex];
+            int currentCheckValue = array[i];
+            if (currentCheckValue < pivotValue) {
+                swap(i, storeIndex, array);
+                storeIndex++;
+            }
+        }
+        swap(pivotIndex, storeIndex - 1, array);
+        quickSort(array, lo, storeIndex - 1);
+        quickSort(array, storeIndex, hi);
+    }
+
+    @Override
+    public void mergeSort(int[] array) {
+
+    }
+
     private void moveRight(int[] array, int j) {
-        array[j+1] = array[j];
+        array[j + 1] = array[j];
     }
 
     private void swap(int j, int i, int[] array) {
