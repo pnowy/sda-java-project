@@ -38,4 +38,19 @@ public class SortingTest {
         sorting.quickSort(array);
         log.info("sort array = {}", array);
     }
+
+    @Test
+    public void mergeSort() {
+        int[] array = {42, 7, 5, 16, 99, 2};
+        sorting.mergeSort(array);
+        log.info("sort array = {}", array);
+    }
+
+    @Test
+    public void divideInteger() {
+        int x = 7;
+        float y = 1.0f;
+        float result = (y * x/2);
+        System.out.println(result);
+    }
 }
